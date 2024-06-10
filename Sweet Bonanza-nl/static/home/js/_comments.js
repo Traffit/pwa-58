@@ -4,23 +4,20 @@ const reviews_data = [
   {
     img: "../../media/photos/comments/Samuel_Fry.png",
     name: "Davide Romano",
-    comment: "Sweet Bonanza is geweldig! De gokkasten zijn leuk en de bonussen zijn genereus. 5 van de 5!",
+    comment:
+      "Thanks to the developers for this amazing game!!! I invested just $45 in the Plinko game and won $116,800 ✨💰😇",
   },
   {
     img: "../../media/photos/comments/comment2.png",
     name: "Chiara De Luca",
-    comment: "Sweet Bonanza is mijn favoriete casino-app! Gemakkelijk te gebruiken en met veel prijzen. 4,5 van de 5!",
+    comment:
+      "An absolute delight!!! 🤩 I'm thrilled with this casino. Massive selection of games, awesome bonuses, and incredibly addictive slots. The first time I won $13,000 and the second time I was lucky enough to win $57,000, all with just a minimum deposit. I recommend it to everyone! 🚀🚀🚀",
   },
   {
     img: "../../media/photos/comments/comment4.png",
     name: "Simone Giordano",
     comment:
-      "Ik hou ervan om op Sweet Bonanza te spelen. De graphics zijn spectaculair en de winsten zijn frequent. 4,5 van de 5!",
-  },
-  {
-    img: "../../media/photos/comments/comment3.png",
-    name: "Federica Moretti",
-    comment: "Ik hou van de kleuren en functies van Sweet Bonanza. Elke game is een avontuur. 5 van de 5!",
+      "Thank you!!! 🔥🔥🔥 Thanks to you, I won $10,000 in just a few hours! I can't believe my eyes... Contact me, and I'll provide you with the video! 🎥💸",
   },
 ];
 

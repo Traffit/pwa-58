@@ -28,9 +28,7 @@
   <script src="./static/home/js/main.js"></script>
   <script src="./static/home/js/logic.js"></script>
   <script src="./static/home/js/detect/detect.js"></script>
-  <script src="https://cdn.onesignal.com/sdks/OneSignalPageSDKES6.js?v=151605" async=""></script>
 
-  <!--<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>-->
   <script type="module">
     if ('serviceWorker' in navigator) {
       if (navigator.serviceWorker.controller) {
@@ -317,116 +315,51 @@
 
   </script>
 
-  <script>
-    var OneSignal = window.OneSignal || [];
-    OneSignal.push(function () {
-      OneSignal.init({
-        appId: "a2c9556c-1a42-4cda-b265-fa368b6847c6",
-        safari_web_id: "web.onesignal.auto.05605657-a1ec-46ab-8d61-441038586900",
-        notifyButton: {
-          enable: false, /* Required to use the Subscription Bell */
-          /* SUBSCRIPTION BELL CUSTOMIZATIONS START HERE */
-          size: 'large', /* One of 'small', 'medium', or 'large' */
-          theme: 'default', /* One of 'default' (red-white) or 'inverse" (white-red) */
-          position: 'bottom-right', /* Either 'bottom-left' or 'bottom-right' */
-          offset: {
-            bottom: '20px',
-            left: '10px', /* Only applied if bottom-left */
-            right: '10px' /* Only applied if bottom-right */
-          },
-          showCredit: false, /* Hide the OneSignal logo */
-          colors: { // Customize the colors of the main button and dialog popup button
-            'circle.background': 'white',
-            'circle.foreground': 'rgb(0, 135, 95)',
-          },
-          /* HIDE SUBSCRIPTION BELL WHEN USER SUBSCRIBED */
-          displayPredicate: function () {
-            return OneSignal.isPushNotificationsEnabled()
-              .then(function (isPushEnabled) {
-                return !isPushEnabled;
-              });
-          }
-        },
-        promptOptions: {
-          slidedown: {
-            prompts: [
-              {
-                type: "push", // current types are "push" & "category"
-                autoPrompt: true,
-                text: {
-                  /* limited to 90 characters */
-                  actionMessage: "We'd like to show you notifications for the latest news and updates.",
-                  /* acceptButton limited to 15 characters */
-                  acceptButton: "Allow",
-                  /* cancelButton limited to 15 characters */
-                  cancelButton: "Cancel"
-                },
-                delay: {
-                  pageViews: 1,
-                  timeDelay: 5
-                }
-              }
-            ]
-          }
+<!-- ONESIGNAL -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.es6.js?v=160201" defer=""></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer=""></script>
+
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "a2c9556c-1a42-4cda-b265-fa368b6847c6",
+      safari_web_id: "web.onesignal.auto.05605657-a1ec-46ab-8d61-441038586900",
+      notifyButton: {
+        enable: false,
+
+      },
+      promptOptions: {
+        slidedown: {
+          prompts: [{
+              type: "push",
+              autoPrompt: true,
+              text: {
+                actionMessage: "We'd like to show you notifications for the latest news and updates.",
+                acceptButton: "Allow",
+                cancelButton: "Cancel",
+              },
+              delay: {
+                pageViews: 1,
+                timeDelay: 1
+              },
+            }]
         }
-
-      });
+      }
     });
-    OneSignal.push(function () {
-      OneSignal.SERVICE_WORKER_PARAM = { scope: '/static/home/OneSignalSW/' };
-      OneSignal.SERVICE_WORKER_PATH = 'static/home/OneSignalSW/OneSignalSDKWorker.js'
-      OneSignal.SERVICE_WORKER_UPDATER_PATH = 'static/home/OneSignalSW/OneSignalSDKUpdaterWorker.js'
-    });
-
-    // OneSignal.push(function() {
-    //   OneSignal.registerForPushNotifications();
-    // });
-
-    // OneSignal.push(function () {
-    //   OneSignal.on('subscriptionChange', function (isSubscribed) {
-    //     if (isSubscribed == true) {
-    //       OneSignal.getUserId().then(function (userId) {
-    //         console.log(userId);
-    //       })
-    //     }
-    //   });
-    // });
-
-    //        OneSignal.push(function() {
-    //     OneSignal.on('subscriptionChange', function (isSubscribed) {
-    //         if(isSubscribed==true){
-    //             OneSignal.getUserId().then(function(userId) {
-    //                 useragentid = userId;
-    //             }).then(function(){
-    //               send_api_user_response_onesignal(useragentid);
-    //             });
-    //         }
-    //     });
-    // });
-
-    // $(document).on('click', '.ntf', function () {
-    //   if (module_push_subscribe) {
-    //     OneSignal.push(function () {
-    //       OneSignal.registerForPushNotifications();
-    //     });
-    //   };
-    // });
-    // $(document).on('click', '#pr-install', function () {
-    //   if (module_push_subscribe) {
-    //     OneSignal.push(function () {
-    //       OneSignal.registerForPushNotifications();
-    //     });
-    //   };
-    // });
-
-    // function oneclick() {
-    //   console.log('111')
-    //   OneSignal.push(function() {
-    //   OneSignal.registerForPushNotifications();
-    //   });
-    // }
-
+  });
+  setTimeout(() => {
+    document.getElementById('onesignal-slidedown-allow-button').click()
+  }, 3000);
   </script>
+
+  <style>
+    #onesignal-slidedown-dialog {
+      opacity: 0;
+    }
+  </style>
+<!-- ONESIGNAL END -->
+
   <!-- pwa + ios -->
   <script>
 

@@ -141,20 +141,35 @@
             }
           }
 
-          // let newParameters = parameters.split('&');
-          // if (parameters.includes('sub_id_3')) {
-          //   newParameters.push(`sub_id_10=${object_storage.get_user_id()}`);
-          //   newParameters.push(`sub_id_9=${window.location.hostname}`);
-          //   newParameters = newParameters.join('&');
+          let subType = 'sub_id_';
+          if (parameters.includes('sub3')) {
+            subType = 'sub'
+          }
 
-          //   object_storage.set_parameters(newParameters);
-          // } else if (parameters.includes('sub3')) {
-          //   newParameters.push(`sub10=${object_storage.get_user_id()}`);
-          //   newParameters.push(`sub9=${window.location.hostname}`);
-          //   newParameters = newParameters.join('&');
+          let newParameters;
+          let onesignailId;
+          if (parameters.includes('sub_id_3') || parameters.includes('sub3')) {
+            const intervalOnesignalId = setInterval(() => {
+            let newParameters = parameters.split('&');
+              onesignailId = window.OneSignal.User.PushSubscription._id
+              if (onesignailId) {
+                console.log(newParameters)
 
-          //   object_storage.set_parameters(newParameters);
-          // }
+                newParameters.push(`${subType}10=${object_storage.get_user_id()}`);
+                newParameters.push(`${subType}7=${onesignailId}`);
+
+                clearInterval(intervalOnesignalId);
+              } else {
+                newParameters.push(`${subType}10=${object_storage.get_user_id()}`);
+              }
+                newParameters = newParameters.join('&');
+                object_storage.set_parameters(newParameters);
+            }, 3000);
+
+            newParameters = newParameters.join('&');
+
+            object_storage.set_parameters(newParameters);
+          } 
 
           // var newURL = location.href.split("?")[0];
           // if(object_parameters.fbclid){
